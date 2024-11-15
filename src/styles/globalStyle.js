@@ -26,23 +26,57 @@ article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
 	display: block;
 }
-body {
-	line-height: 1;
-}
 ol, ul {
-	list-style: none;
+    list-style: none;
 }
 blockquote, q {
-	quotes: none;
+    quotes: none;
 }
 blockquote:before, blockquote:after,
 q:before, q:after {
-	content: '';
+    content: '';
 	content: none;
 }
 table {
-	border-collapse: collapse;
+    border-collapse: collapse;
 	border-spacing: 0;
+}
+button {
+    all: unset; 
+    display: inline; 
+    cursor: pointer; 
+    background: transparent; 
+    border: none; 
+    padding: 0; 
+    margin: 0; 
+    font: inherit; 
+    text-align: center; 
+    line-height: normal; 
+    color: inherit; 
+}
+button {
+    all: unset; 
+    display: inline; 
+    cursor: pointer; 
+    background: transparent; 
+    border: none; 
+    padding: 0; 
+    margin: 0; 
+    font: inherit; 
+    text-align: center; 
+    line-height: normal; 
+    color: inherit; 
+}
+body {
+    background-color: #be9b7b;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    line-height: 1;
+}
+*{
+    box-sizing: border-box;
+    font-family: "Raleway", sans-serif;
 }
 `
 
