@@ -1,6 +1,8 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Button } from "../common";
+import { Button, ErrorField } from "../common";
+import { useNavigate } from "react-router-dom";
+import { postNewUser } from "../../services/auth.services";
 
 export default function FormSignUp() {
     const [newUser, setNewUser] = useState({
@@ -10,8 +12,18 @@ export default function FormSignUp() {
         confirmPassword: ''
     });
 
-    function handleForm(event) {
+    const [error, setError] = useState('')
+
+    const navigate = useNavigate();
+
+    async function handleForm(event) {
         event.preventDefault();
+        try {
+            await postNewUser(newUser);
+            navigate('/');
+        } catch (error) {
+            setError(error.response.data.message)
+        }
     }
 
     return (
@@ -69,7 +81,7 @@ export default function FormSignUp() {
                     })
                 }}
             />
-
+            {error && <ErrorField error={error} />}
             <Button
                 height={'46px'}
                 width={'326px'}
