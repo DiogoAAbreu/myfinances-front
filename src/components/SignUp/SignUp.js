@@ -1,19 +1,19 @@
 import styled from "styled-components";
-import FormSignIn from "./FormSignIn";
 import { Title } from "../common";
+import FormSignUp from "./FormSignUp";
 import { Link } from "react-router-dom";
 
-export default function SignIn() {
+export default function SignUp() {
     return (
-        <SignInWrapper>
+        <SignUpWrapper>
             <Title />
-            <FormSignIn />
-            <StyledLink to="/cadastro">Primeira vez? Cadastre-se!</StyledLink>
-        </SignInWrapper>
+            <FormSignUp />
+            <StyledLink to="/">Já tem uma conta? Entre agora!</StyledLink>
+        </SignUpWrapper>
     );
 }
 
-const SignInWrapper = styled.main`
+const SignUpWrapper = styled.div`
 display: flex;
 align-items: center;
 justify-content: center;

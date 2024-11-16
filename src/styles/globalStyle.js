@@ -76,7 +76,6 @@ body {
 }
 *{
     box-sizing: border-box;
-    font-family: "Raleway", sans-serif;
 }
 `
 

@@ -40,7 +40,7 @@ export default function FormSignIn() {
             <Button
                 height={'46px'}
                 width={'326px'}
-                margin={'5px 0px 0px 0px'}
+                margin={'5px 0px'}
                 fontSize={'20px'}
             >
                 Entrar

@@ -11,4 +11,5 @@ export default function Content({ children }) {
 const ContentWrapper = styled.div`
 width: 400px;
 height: 100vh;
+font-family: "Raleway", sans-serif;
 `
