@@ -6,7 +6,11 @@ function postNewUser(newUser) {
     return axios.post(`${apiBaseUrl}/sign-up`, newUser);
 };
 
+function postNewSession(user) {
+    return axios.post(`${apiBaseUrl}/sign-in`, user);
+}
+
 export {
     postNewUser,
-
+    postNewSession
 }
