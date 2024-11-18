@@ -1,8 +1,8 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import GlobalStyle from '../styles/globalStyle';
 import { Content } from './common';
-import SignIn from './SignIn/SignIn';
-import SignUp from './SignUp/SignUp';
+import SignIn from './SignIn/index';
+import SignUp from './SignUp/index';
 import AuthProvider from '../contexts/auth.context';
 
 function App() {
