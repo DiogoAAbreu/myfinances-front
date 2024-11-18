@@ -1,6 +1,8 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
-import { Button } from "../common";
+import { Button, ErrorField } from "../common";
+import { postNewSession } from '../../services/auth.services'
+import { AuthContext } from '../../contexts/auth.context'
 
 export default function FormSignIn() {
     const [userData, setUserData] = useState({
@@ -8,8 +10,18 @@ export default function FormSignIn() {
         password: ''
     })
 
-    function handleForm(event) {
+    const { setToken } = useContext(AuthContext);
+
+    const [error, setError] = useState('');
+
+    async function handleForm(event) {
         event.preventDefault();
+        try {
+            const newSession = await postNewSession(userData);
+            setToken(newSession.data);
+        } catch (error) {
+            setError(error.response.data.message)
+        }
     }
 
     return (
@@ -36,6 +48,8 @@ export default function FormSignIn() {
                     [event.target.name]: event.target.value
                 })}
             />
+
+            {error && <ErrorField error={error} />}
 
             <Button
                 height={'46px'}
