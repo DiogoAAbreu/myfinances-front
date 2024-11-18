@@ -1,4 +1,5 @@
 import { useState, useContext } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button, ErrorField } from "../common";
 import { postNewSession } from '../../services/auth.services'
@@ -10,15 +11,18 @@ export default function FormSignIn() {
         password: ''
     })
 
+    const [error, setError] = useState('');
+
     const { setToken } = useContext(AuthContext);
 
-    const [error, setError] = useState('');
+    const navigate = useNavigate();
 
     async function handleForm(event) {
         event.preventDefault();
         try {
             const newSession = await postNewSession(userData);
             setToken(newSession.data);
+            navigate('/home');
         } catch (error) {
             setError(error.response.data.message)
         }
