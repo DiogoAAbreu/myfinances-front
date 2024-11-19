@@ -27,10 +27,10 @@ font-weight:700;
     font-size: 15px;
     margin-top: 35px;
     text-decoration: none;
-    transition: font-size 0.1s linear;
+    transition: transform 200ms linear;
     &:hover{
         cursor: pointer;
-        font-size: 16px;
+        transform: scale(1.05);
         filter: brightness(1.1);
     }
 `

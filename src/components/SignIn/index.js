@@ -14,23 +14,22 @@ export default function SignIn() {
 }
 
 const SignInWrapper = styled.main`
-display: flex;
-align-items: center;
-justify-content: center;
-flex-direction: column;
-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
 `
 
 const StyledLink = styled(Link)`
-font-weight:700;
+    font-weight:700;
     color: #854442;
     font-size: 15px;
     margin-top: 35px;
     text-decoration: none;
-    transition: font-size 0.1s linear;
+    transition: transform 200ms ease;
     &:hover{
         cursor: pointer;
-        font-size: 16px;
+        transform: scale(1.05);
         filter: brightness(1.1);
     }
 `

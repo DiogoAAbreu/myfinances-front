@@ -6,8 +6,6 @@ export default function Home() {
 
     const { token } = useContext(AuthContext);
 
-    console.log(token);
-
     return (
         <HomeWrapper>
 
