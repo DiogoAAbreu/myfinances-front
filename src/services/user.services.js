@@ -11,3 +11,8 @@ function getUserByToken(token) {
 
     return axios.get(`${apiBaseUrl}/user`, config);
 }
+
+export {
+    getUserByToken,
+
+}

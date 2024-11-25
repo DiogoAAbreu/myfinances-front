@@ -9,5 +9,5 @@ export default function Header({ children }) {
 }
 
 const HeaderWrapper = styled.header`
-
+    color: #3c2f2f;
 `
