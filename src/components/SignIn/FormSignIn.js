@@ -1,9 +1,10 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Button, ErrorField } from "../common";
+import { Button, Toast } from "../common";
 import { postNewSession } from '../../services/auth.services'
 import { AuthContext } from '../../contexts/auth.context'
+import { toast } from "react-toastify";
 
 export default function FormSignIn() {
     const [userData, setUserData] = useState({
@@ -11,11 +12,13 @@ export default function FormSignIn() {
         password: ''
     })
 
-    const [error, setError] = useState('');
-
     const { setToken } = useContext(AuthContext);
 
     const navigate = useNavigate();
+
+    function notifyError(error) {
+        toast.error(error);
+    };
 
     async function handleForm(event) {
         event.preventDefault();
@@ -24,7 +27,7 @@ export default function FormSignIn() {
             setToken(newSession.data);
             navigate('/home');
         } catch (error) {
-            setError(error.response.data.message)
+            notifyError(error.response.data.message);
         }
     }
 
@@ -53,8 +56,6 @@ export default function FormSignIn() {
                 })}
             />
 
-            {error && <ErrorField error={error} />}
-
             <Button
                 height={'46px'}
                 width={'326px'}
@@ -63,6 +64,7 @@ export default function FormSignIn() {
             >
                 Entrar
             </Button>
+            <Toast />
         </FormSignInWrapper >
     );
 }

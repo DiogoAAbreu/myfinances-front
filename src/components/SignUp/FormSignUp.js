@@ -1,8 +1,9 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Button, ErrorField } from "../common";
+import { Button, Toast } from "../common";
 import { useNavigate } from "react-router-dom";
 import { postNewUser } from "../../services/auth.services";
+import { toast } from "react-toastify";
 
 export default function FormSignUp() {
     const [newUser, setNewUser] = useState({
@@ -12,9 +13,11 @@ export default function FormSignUp() {
         confirmPassword: ''
     });
 
-    const [error, setError] = useState('')
-
     const navigate = useNavigate();
+
+    function notifyError(error) {
+        toast.error(error);
+    }
 
     async function handleForm(event) {
         event.preventDefault();
@@ -22,7 +25,7 @@ export default function FormSignUp() {
             await postNewUser(newUser);
             navigate('/');
         } catch (error) {
-            setError(error.response.data.message)
+            notifyError(error.response.data.message)
         }
     }
 
@@ -81,7 +84,7 @@ export default function FormSignUp() {
                     })
                 }}
             />
-            {error && <ErrorField error={error} />}
+
             <Button
                 height={'46px'}
                 width={'326px'}
@@ -90,6 +93,7 @@ export default function FormSignUp() {
             >
                 Cadastrar
             </Button>
+            <Toast />
         </FormSignUpWrapper>
     );
 }
