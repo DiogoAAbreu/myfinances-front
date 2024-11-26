@@ -28,7 +28,7 @@ height: ${props => props.$height};
 font-size: ${props => props.$fontSize};
 background-color: #854442;
 margin: ${props => props.$margin ? props.$margin : '0px'};
-color: white;
+color: #fff4e6;
 border-radius: 5px;
 &:hover{
     filter: brightness(1.1)
