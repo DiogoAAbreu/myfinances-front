@@ -4,6 +4,8 @@ import { AuthContext } from "../../contexts/auth.context";
 import { getUserByToken } from "../../services/user.services";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../common";
+import TrasactionFrame from "./TransactionFrame";
+import Buttons from "./Buttons";
 
 export default function Home() {
 
@@ -25,7 +27,14 @@ export default function Home() {
 
     return (
         <HomeWrapper>
-            <Header>Olá, {user?.name}</Header>
+            <Header>
+                Olá, {user?.name}
+            </Header>
+            <TrasactionFrame>
+
+            </TrasactionFrame>
+
+            <Buttons />
         </HomeWrapper>
     );
 }
@@ -33,4 +42,8 @@ export default function Home() {
 const HomeWrapper = styled.div`
     height: 100%;
     width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 `

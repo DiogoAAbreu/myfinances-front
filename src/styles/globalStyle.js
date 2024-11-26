@@ -54,19 +54,6 @@ button {
     line-height: normal; 
     color: inherit; 
 }
-button {
-    all: unset; 
-    display: inline; 
-    cursor: pointer; 
-    background: transparent; 
-    border: none; 
-    padding: 0; 
-    margin: 0; 
-    font: inherit; 
-    text-align: center; 
-    line-height: normal; 
-    color: inherit; 
-}
 body {
     background-color: #be9b7b;
     display: flex;

@@ -1,10 +1,10 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import styled from "styled-components";
 import { Button, Toast, LoadingCircles } from "../common";
 import { postNewSession } from '../../services/auth.services'
 import { AuthContext } from '../../contexts/auth.context'
 import { toast } from "react-toastify";
+import styled from "styled-components";
 
 export default function FormSignIn() {
     const [userData, setUserData] = useState({
@@ -30,8 +30,8 @@ export default function FormSignIn() {
             setToken(newSession.data);
             navigate('/home');
         } catch (error) {
-            setLoading(false);
             notifyError(error.response.data.message);
+            setLoading(false);
         }
     }
 
