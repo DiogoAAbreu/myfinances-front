@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Button, Toast } from "../common";
+import { Button, Toast, LoadingCircles } from "../common";
 import { postNewSession } from '../../services/auth.services'
 import { AuthContext } from '../../contexts/auth.context'
 import { toast } from "react-toastify";
@@ -14,6 +14,8 @@ export default function FormSignIn() {
 
     const { setToken } = useContext(AuthContext);
 
+    const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
 
     function notifyError(error) {
@@ -23,10 +25,12 @@ export default function FormSignIn() {
     async function handleForm(event) {
         event.preventDefault();
         try {
+            setLoading(true);
             const newSession = await postNewSession(userData);
             setToken(newSession.data);
             navigate('/home');
         } catch (error) {
+            setLoading(false);
             notifyError(error.response.data.message);
         }
     }
@@ -35,6 +39,7 @@ export default function FormSignIn() {
         <FormSignInWrapper onSubmit={handleForm}>
             <input
                 required
+                disabled={loading}
                 placeholder="E-mail"
                 name="email"
                 value={userData.email}
@@ -46,6 +51,7 @@ export default function FormSignIn() {
 
             <input
                 required
+                disabled={loading}
                 placeholder="Senha"
                 name="password"
                 type="password"
@@ -62,7 +68,7 @@ export default function FormSignIn() {
                 margin={'5px 0px'}
                 fontSize={'20px'}
             >
-                Entrar
+                {loading ? <LoadingCircles /> : 'Entrar'}
             </Button>
             <Toast />
         </FormSignInWrapper >

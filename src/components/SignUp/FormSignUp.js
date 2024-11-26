@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Button, Toast } from "../common";
+import { Button, LoadingCircles, Toast } from "../common";
 import { useNavigate } from "react-router-dom";
 import { postNewUser } from "../../services/auth.services";
 import { toast } from "react-toastify";
@@ -13,6 +13,8 @@ export default function FormSignUp() {
         confirmPassword: ''
     });
 
+    const [loading, setLoading] = useState(false);
+
     const navigate = useNavigate();
 
     function notifyError(error) {
@@ -22,10 +24,12 @@ export default function FormSignUp() {
     async function handleForm(event) {
         event.preventDefault();
         try {
+            setLoading(true);
             await postNewUser(newUser);
             navigate('/');
         } catch (error) {
             notifyError(error.response.data.message)
+            setLoading(false);
         }
     }
 
@@ -33,6 +37,7 @@ export default function FormSignUp() {
         <FormSignUpWrapper onSubmit={handleForm}>
             <input
                 required
+                disabled={loading}
                 placeholder="Nome"
                 name="name"
                 value={newUser.name}
@@ -46,6 +51,7 @@ export default function FormSignUp() {
 
             <input
                 required
+                disabled={loading}
                 placeholder="E-mail"
                 name="email"
                 value={newUser.email}
@@ -59,6 +65,7 @@ export default function FormSignUp() {
 
             <input
                 required
+                disabled={loading}
                 placeholder="Senha"
                 name="password"
                 value={newUser.password}
@@ -73,6 +80,7 @@ export default function FormSignUp() {
 
             <input
                 required
+                disabled={loading}
                 placeholder="Confirme a senha"
                 name="confirmPassword"
                 value={newUser.confirmPassword}
@@ -91,7 +99,7 @@ export default function FormSignUp() {
                 margin={'5px 0px'}
                 fontSize={'20px'}
             >
-                Cadastrar
+                {loading ? <LoadingCircles /> : 'Cadastrar'}
             </Button>
             <Toast />
         </FormSignUpWrapper>

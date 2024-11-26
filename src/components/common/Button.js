@@ -23,6 +23,9 @@ export default function Button({
 
 const ButtonWrapper = styled.button`
 font-weight: 700;
+display: flex;
+align-items: center;
+justify-content: center;
 width: ${props => props.$width};
 height: ${props => props.$height};
 font-size: ${props => props.$fontSize};
