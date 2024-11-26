@@ -3,6 +3,7 @@ import Button from "./Button";
 import Title from "./Title";
 import Toast from "./Toast";
 import Header from "./Header";
+import LoadingCircles from "./LoadingCircles";
 
 export {
     Content,
@@ -10,5 +11,6 @@ export {
     Title,
     Toast,
     Header,
+    LoadingCircles,
 
 }
