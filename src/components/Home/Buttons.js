@@ -1,5 +1,7 @@
 import styled from "styled-components";
 import { Button } from "../common";
+import { ReactComponent as Minus } from '../../assets/remove-circle-outline.svg';
+import { ReactComponent as Plus } from '../../assets/add-circle-outline.svg';
 
 export default function Buttons() {
     return (
@@ -9,7 +11,17 @@ export default function Buttons() {
                 width={'155px'}
                 fontSize={'17px'}
             >
-                Nova entrada
+                <ContentButton>
+                    <Plus
+                        height={'25px'}
+                        width={'25px'}
+                        left={'0px'}
+                    />
+                    <div>
+                        <p>Nova</p>
+                        <p>entrada</p>
+                    </div>
+                </ContentButton>
             </Button>
 
             <Button
@@ -17,7 +29,17 @@ export default function Buttons() {
                 width={'155px'}
                 fontSize={'17px'}
             >
-                Nova saída
+                <ContentButton>
+                    <Minus
+                        height={'25px'}
+                        width={'25px'}
+                        left={'0px'}
+                    />
+                    <div>
+                        <p>Nova</p>
+                        <p>saída</p>
+                    </div>
+                </ContentButton>
             </Button>
         </ButtonsWrapper>)
         ;
@@ -28,4 +50,15 @@ const ButtonsWrapper = styled.div`
     display: flex;
     justify-content: space-between;
     margin-top: 15px;
+`
+
+const ContentButton = styled.div`
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: space-between;
+    padding: 10px;
+    text-align: start;
 `

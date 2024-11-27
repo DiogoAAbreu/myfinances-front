@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/auth.context";
 import { getUserByToken } from "../../services/user.services";
 import { useNavigate } from "react-router-dom";
 import { Header } from "../common";
+import { ReactComponent as Exit } from '../../assets/exit-outline.svg';
 import TrasactionFrame from "./TransactionFrame";
 import Buttons from "./Buttons";
 
@@ -29,6 +30,11 @@ export default function Home() {
         <HomeWrapper>
             <Header>
                 Olá, {user?.name}
+                <Exit
+                    width={'40px'}
+                    height={'40px'}
+                    style={{ cursor: 'pointer' }}
+                />
             </Header>
             <TrasactionFrame>
 
