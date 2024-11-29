@@ -17,7 +17,7 @@ function disableSession(token) {
         }
     }
 
-    return axios.delete(`${apiBaseUrl}/sign-out`);
+    return axios.delete(`${apiBaseUrl}/sign-out`, config);
 }
 
 export {
