@@ -7,6 +7,7 @@ import { Header } from "../common";
 import { ReactComponent as Exit } from '../../assets/exit-outline.svg';
 import TrasactionFrame from "./TransactionFrame";
 import Buttons from "./Buttons";
+import { disableSession } from "../../services/auth.services";
 
 export default function Home() {
 
@@ -26,6 +27,16 @@ export default function Home() {
         })
     }, [token, navigate])
 
+    async function signOut() {
+        try {
+            console.log(token)
+            await disableSession(token);
+            navigate('/')
+        } catch (error) {
+            console.log(error)
+        }
+    }
+
     return (
         <HomeWrapper>
             <Header>
@@ -34,10 +45,11 @@ export default function Home() {
                     width={'40px'}
                     height={'40px'}
                     style={{ cursor: 'pointer' }}
+                    onClick={signOut}
                 />
             </Header>
-            <TrasactionFrame>
 
+            <TrasactionFrame>
             </TrasactionFrame>
 
             <Buttons />
