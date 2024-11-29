@@ -3,7 +3,7 @@ import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../contexts/auth.context";
 import { getUserByToken } from "../../services/user.services";
 import { useNavigate } from "react-router-dom";
-import { Header } from "../common";
+import { Header, LoadingCircles } from "../common";
 import { ReactComponent as Exit } from '../../assets/exit-outline.svg';
 import TrasactionFrame from "./TransactionFrame";
 import Buttons from "./Buttons";
@@ -14,6 +14,8 @@ export default function Home() {
     const { token } = useContext(AuthContext);
 
     const [user, setUser] = useState();
+
+    const [loading, setLoading] = useState(false);
 
     const navigate = useNavigate();
 
@@ -29,11 +31,11 @@ export default function Home() {
 
     async function signOut() {
         try {
-            console.log(token)
+            setLoading(true);
             await disableSession(token);
-            navigate('/')
+            navigate('/');
         } catch (error) {
-            console.log(error)
+            setLoading(false);
         }
     }
 
@@ -41,12 +43,16 @@ export default function Home() {
         <HomeWrapper>
             <Header>
                 Olá, {user?.name}
-                <Exit
-                    width={'40px'}
-                    height={'40px'}
-                    style={{ cursor: 'pointer' }}
-                    onClick={signOut}
-                />
+                {loading ?
+                    <LoadingCircles
+
+                    /> :
+                    <Exit
+                        width={'40px'}
+                        height={'40px'}
+                        style={{ cursor: 'pointer' }}
+                        onClick={signOut}
+                    />}
             </Header>
 
             <TrasactionFrame>
