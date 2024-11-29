@@ -10,7 +10,19 @@ function postNewSession(user) {
     return axios.post(`${apiBaseUrl}/sign-in`, user);
 }
 
+function disableSession(token) {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    return axios.delete(`${apiBaseUrl}/sign-out`);
+}
+
 export {
     postNewUser,
-    postNewSession
+    postNewSession,
+    disableSession,
+
 }
