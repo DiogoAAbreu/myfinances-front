@@ -43,11 +43,11 @@ export default function Home() {
         <HomeWrapper>
             <Header>
                 Olá, {user?.name}
-                {loading ?
-                    <LoadingCircles
-
-                    /> :
-                    <Exit
+                {loading
+                    ? <LoadingCircles
+                        color={'#3c2f2f'}
+                        size={'40px'} />
+                    : <Exit
                         width={'40px'}
                         height={'40px'}
                         style={{ cursor: 'pointer' }}

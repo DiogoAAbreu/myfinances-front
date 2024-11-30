@@ -99,7 +99,11 @@ export default function FormSignUp() {
                 margin={'5px 0px'}
                 fontSize={'20px'}
             >
-                {loading ? <LoadingCircles /> : 'Cadastrar'}
+                {loading
+                    ? <LoadingCircles
+                        color={'#fff4e6'}
+                        size={'35px'} />
+                    : 'Cadastrar'}
             </Button>
             <Toast />
         </FormSignUpWrapper>

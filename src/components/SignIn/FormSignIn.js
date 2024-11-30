@@ -68,7 +68,11 @@ export default function FormSignIn() {
                 margin={'5px 0px'}
                 fontSize={'20px'}
             >
-                {loading ? <LoadingCircles /> : 'Entrar'}
+                {loading
+                    ? <LoadingCircles
+                        color={'#fff4e6'}
+                        size={'35px'} />
+                    : 'Entrar'}
             </Button>
             <Toast />
         </FormSignInWrapper >

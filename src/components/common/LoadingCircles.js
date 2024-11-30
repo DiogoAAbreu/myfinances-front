@@ -1,11 +1,11 @@
 import { Circles } from 'react-loader-spinner'
 
-export default function LoadingCircles() {
+export default function LoadingCircles({ color, size }) {
     return (
         <Circles
-            height="35"
-            width="35"
-            color="#fff4e6"
+            height={size}
+            width={size}
+            color={color}
             ariaLabel="circles-loading"
             wrapperStyle={{}}
             wrapperClass=""
