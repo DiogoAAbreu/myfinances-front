@@ -2,27 +2,30 @@ import styled from "styled-components";
 import { Button } from "../common";
 import { ReactComponent as Minus } from '../../assets/remove-circle-outline.svg';
 import { ReactComponent as Plus } from '../../assets/add-circle-outline.svg';
+import { Link } from "react-router-dom";
 
 export default function Buttons() {
     return (
         <ButtonsWrapper>
-            <Button
-                height={'114px'}
-                width={'155px'}
-                fontSize={'17px'}
-            >
-                <ContentButton>
-                    <Plus
-                        height={'25px'}
-                        width={'25px'}
-                        left={'0px'}
-                    />
-                    <div>
-                        <p>Nova</p>
-                        <p>entrada</p>
-                    </div>
-                </ContentButton>
-            </Button>
+            <Link to="/deposito">
+                <Button
+                    height={'114px'}
+                    width={'155px'}
+                    fontSize={'17px'}
+                >
+                    <ContentButton>
+                        <Plus
+                            height={'25px'}
+                            width={'25px'}
+                            left={'0px'}
+                        />
+                        <div>
+                            <p>Nova</p>
+                            <p>entrada</p>
+                        </div>
+                    </ContentButton>
+                </Button>
+            </Link>
 
             <Button
                 height={'114px'}
