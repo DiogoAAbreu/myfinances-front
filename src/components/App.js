@@ -4,6 +4,7 @@ import { Content } from './common';
 import SignIn from './SignIn/index';
 import SignUp from './SignUp/index';
 import Home from './Home';
+import Deposit from './Deposit/index';
 import AuthProvider from '../contexts/auth.context';
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
             <Route path="/" element={<SignIn />} />
             <Route path="/cadastro" element={<SignUp />} />
             <Route path="/home" element={<Home />} />
+            <Route path='/deposito' element={<Deposit />} />
           </Routes>
         </AuthProvider>
       </Content>
