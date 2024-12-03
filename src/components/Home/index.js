@@ -43,6 +43,7 @@ export default function Home() {
         <HomeWrapper>
             <Header>
                 Olá, {user?.name}
+
                 {loading
                     ? <LoadingCircles
                         color={'#3c2f2f'}
