@@ -6,6 +6,7 @@ import SignUp from './SignUp/index';
 import Home from './Home';
 import Deposit from './Deposit/index';
 import AuthProvider from '../contexts/auth.context';
+import Withdraw from './Withdraw';
 
 function App() {
   return (
@@ -18,6 +19,7 @@ function App() {
             <Route path="/cadastro" element={<SignUp />} />
             <Route path="/home" element={<Home />} />
             <Route path='/deposito' element={<Deposit />} />
+            <Route path='/saque' element={<Withdraw />} />
           </Routes>
         </AuthProvider>
       </Content>
