@@ -27,23 +27,25 @@ export default function Buttons() {
                 </Button>
             </Link>
 
-            <Button
-                height={'114px'}
-                width={'155px'}
-                fontSize={'17px'}
-            >
-                <ContentButton>
-                    <Minus
-                        height={'25px'}
-                        width={'25px'}
-                        left={'0px'}
-                    />
-                    <div>
-                        <p>Nova</p>
-                        <p>saída</p>
-                    </div>
-                </ContentButton>
-            </Button>
+            <Link to="/saque">
+                <Button
+                    height={'114px'}
+                    width={'155px'}
+                    fontSize={'17px'}
+                >
+                    <ContentButton>
+                        <Minus
+                            height={'25px'}
+                            width={'25px'}
+                            left={'0px'}
+                        />
+                        <div>
+                            <p>Nova</p>
+                            <p>saída</p>
+                        </div>
+                    </ContentButton>
+                </Button>
+            </Link>
         </ButtonsWrapper>)
         ;
 }
