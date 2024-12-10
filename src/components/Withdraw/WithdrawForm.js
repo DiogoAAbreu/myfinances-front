@@ -8,6 +8,19 @@ export default function WithdrawForm() {
         description: '',
     })
 
+    const formatCurrency = (value) => {
+        const numericValue = value.replace(/\D/g, "");
+
+        if (numericValue) {
+            const formattedValue = parseFloat(numericValue) / 100;
+            return new Intl.NumberFormat("pt-BR", {
+                style: "currency",
+                currency: "BRL",
+            }).format(formattedValue);
+        }
+        return "";
+    };
+
     function handleForm(event) {
         event.preventDefault();
     }
@@ -20,9 +33,10 @@ export default function WithdrawForm() {
                 name="value"
                 value={withdraw.value}
                 onChange={event => {
+                    const formattedValue = formatCurrency(event.target.value);
                     setWithdraw({
                         ...withdraw,
-                        [event.target.name]: event.target.value
+                        [event.target.name]: formattedValue
                     })
                 }}
             />
