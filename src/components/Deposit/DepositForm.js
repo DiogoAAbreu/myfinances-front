@@ -22,6 +22,7 @@ export default function DepositForm() {
     };
 
     function handleForm(event) {
+        console.log(deposit);
         event.preventDefault();
     }
 
