@@ -1,12 +1,19 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 import { Button } from "../common";
+import { AuthContext } from "../../contexts/auth.context";
+import { postTransaction } from "../../services/transactions.services";
 
 export default function DepositForm() {
     const [deposit, setDeposit] = useState({
         value: '',
         description: '',
     })
+
+    const { token } = useContext(AuthContext);
+
+    const navigate = useNavigate();
 
     const formatCurrency = (value) => {
         const numericValue = value.replace(/\D/g, "");
@@ -21,9 +28,23 @@ export default function DepositForm() {
         return "";
     };
 
-    function handleForm(event) {
-        console.log(deposit);
+    async function handleForm(event) {
         event.preventDefault();
+
+        const transaction = {
+            type: 'deposit',
+            value: Number(deposit.value.replace('R$', '').replace(',', '.')),
+            description: deposit.description
+        }
+        try {
+            const aaa = await postTransaction(transaction, token);
+            console.log(aaa)
+            navigate('/home');
+        } catch (error) {
+            if (error.status === 401) {
+                navigate('/')
+            }
+        }
     }
 
     return (
