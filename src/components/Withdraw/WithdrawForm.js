@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
 import styled from "styled-components";
 import { useNavigate } from "react-router-dom";
 import { Button, Toast } from "../common";
 import { toast } from "react-toastify";
+import { AuthContext } from "../../contexts/auth.context";
+import { postTransaction } from "../../services/transactions.services";
 
 export default function WithdrawForm() {
     const [withdraw, setWithdraw] = useState({
         value: '',
         description: '',
     })
+
+    const { token } = useContext(AuthContext);
 
     const navigate = useNavigate();
 
@@ -25,13 +29,27 @@ export default function WithdrawForm() {
         return "";
     };
 
+    function notifyError(error) {
+        toast.error(error);
+    };
+
     async function handleForm(event) {
         event.preventDefault();
 
+        const transaction = {
+            type: 'withdraw',
+            value: Number(withdraw.value.replace('R$', '').replace(',', '.')),
+            description: withdraw.description
+        }
+
         try {
-
+            await postTransaction(transaction, token);
+            navigate('/home');
         } catch (error) {
-
+            if (error.status === 401) {
+                navigate('/')
+            }
+            notifyError(error.response.data.message);
         }
     }
 
