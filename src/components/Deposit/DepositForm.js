@@ -1,9 +1,10 @@
 import { useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
-import { Button } from "../common";
+import { Button, Toast } from "../common";
 import { AuthContext } from "../../contexts/auth.context";
 import { postTransaction } from "../../services/transactions.services";
+import { toast } from "react-toastify";
 
 export default function DepositForm() {
     const [deposit, setDeposit] = useState({
@@ -28,6 +29,10 @@ export default function DepositForm() {
         return "";
     };
 
+    function notifyError(error) {
+        toast.error(error);
+    };
+
     async function handleForm(event) {
         event.preventDefault();
 
@@ -36,6 +41,7 @@ export default function DepositForm() {
             value: Number(deposit.value.replace('R$', '').replace(',', '.')),
             description: deposit.description
         }
+
         try {
             const aaa = await postTransaction(transaction, token);
             console.log(aaa)
@@ -44,6 +50,7 @@ export default function DepositForm() {
             if (error.status === 401) {
                 navigate('/')
             }
+            notifyError(error.response.data.message);
         }
     }
 
@@ -83,6 +90,7 @@ export default function DepositForm() {
                 fontSize={'20px'}>
                 Salvar Entrada
             </Button>
+            <Toast />
         </FormWrapper>
     );
 }
