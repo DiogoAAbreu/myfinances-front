@@ -8,7 +8,7 @@ export default function TrasactionFrame() {
     );
 }
 
-const FrameWrapper = styled.div`
+const FrameWrapper = styled.ul`
     width: 326px;
     height: 446px;
     border-radius: 5px;

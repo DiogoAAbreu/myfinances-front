@@ -12,7 +12,20 @@ function postTransaction(transaction, token) {
     return axios.post(`${apiBaseUrl}/transaction`, transaction, config);
 }
 
+function getTrasactionsBalance(token) {
+    const config = {
+        headers: {
+            headers: {
+                Authorization: `Bearer ${token}`
+            }
+        }
+    }
+
+    return axios.get(`${apiBaseUrl}/transaction/balance`)
+}
+
 export {
     postTransaction,
+    getTrasactionsBalance,
 
 }
