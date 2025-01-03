@@ -43,8 +43,7 @@ export default function DepositForm() {
         }
 
         try {
-            const aaa = await postTransaction(transaction, token);
-            console.log(aaa)
+            await postTransaction(transaction, token);
             navigate('/home');
         } catch (error) {
             if (error.status === 401) {
