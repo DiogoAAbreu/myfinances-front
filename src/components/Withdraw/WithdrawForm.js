@@ -1,12 +1,16 @@
 import { useState } from "react";
 import styled from "styled-components";
-import { Button } from "../common";
+import { useNavigate } from "react-router-dom";
+import { Button, Toast } from "../common";
+import { toast } from "react-toastify";
 
 export default function WithdrawForm() {
     const [withdraw, setWithdraw] = useState({
         value: '',
         description: '',
     })
+
+    const navigate = useNavigate();
 
     const formatCurrency = (value) => {
         const numericValue = value.replace(/\D/g, "");
@@ -21,8 +25,14 @@ export default function WithdrawForm() {
         return "";
     };
 
-    function handleForm(event) {
+    async function handleForm(event) {
         event.preventDefault();
+
+        try {
+
+        } catch (error) {
+
+        }
     }
 
     return (
@@ -61,6 +71,7 @@ export default function WithdrawForm() {
                 fontSize={'20px'}>
                 Salvar Entrada
             </Button>
+            <Toast />
         </FormWrapper>
     );
 }
