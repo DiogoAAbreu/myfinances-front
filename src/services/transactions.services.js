@@ -15,13 +15,11 @@ function postTransaction(transaction, token) {
 function getTrasactionsBalance(token) {
     const config = {
         headers: {
-            headers: {
-                Authorization: `Bearer ${token}`
-            }
+            Authorization: `Bearer ${token}`
         }
     }
 
-    return axios.get(`${apiBaseUrl}/transaction/balance`)
+    return axios.get(`${apiBaseUrl}/transaction/balance`, config)
 }
 
 export {
