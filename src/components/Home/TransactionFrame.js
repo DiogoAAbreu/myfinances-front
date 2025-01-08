@@ -31,8 +31,20 @@ export default function TrasactionFrame() {
     return (
         <FrameWrapper>
 
+            <Amount balance={balance} />
         </FrameWrapper>
     );
+}
+
+function Amount({ balance }) {
+    const amount = balance.deposit - balance.withdraw;
+    const amountFormated = String((amount / 100).toFixed(2)).replace('.', ',')
+    return (
+        <AmountDiv $balance={amount}>
+            <p>SALDO</p>
+            <span>R$ {amountFormated}</span>
+        </AmountDiv>
+    )
 }
 
 const FrameWrapper = styled.ul`
@@ -40,4 +52,28 @@ const FrameWrapper = styled.ul`
     height: 446px;
     border-radius: 5px;
     background-color:#fff4e6;
+    position: relative;
+`
+
+const AmountDiv = styled.div`
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    width: 326px;
+    height: 30px;
+    border-radius: 5px;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    p{
+        font-size: 17px;
+        font-weight: 700;
+        color: #000000;
+    }
+    span{
+        font-size: 17px;
+        font-weight: 400;
+        color: ${props => props.$balance < 0 ? '#C70000' : '#03AC00'};
+    }
 `
