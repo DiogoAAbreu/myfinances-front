@@ -22,7 +22,9 @@ export default function TrasactionFrame() {
             })
         }
         ).catch(error => {
-            navigate('/');
+            if (error.status === 401) {
+                navigate('/');
+            }
         })
     }, [token, navigate])
 
