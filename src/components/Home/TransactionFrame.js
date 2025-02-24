@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { AuthContext } from "../../contexts/auth.context";
 import { getTrasactionsBalance } from "../../services/transactions.services";
 import { useNavigate } from "react-router-dom";
+import Transaction from "./Transaction";
 
 export default function TrasactionFrame() {
     const [balance, setBalance] = useState({
@@ -30,7 +31,7 @@ export default function TrasactionFrame() {
 
     return (
         <FrameWrapper>
-
+            <Transaction />
             <Amount balance={balance} />
         </FrameWrapper>
     );
