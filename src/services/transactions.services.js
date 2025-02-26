@@ -22,8 +22,19 @@ function getTrasactionsBalance(token) {
     return axios.get(`${apiBaseUrl}/transaction/balance`, config)
 }
 
+function deleteTransaction(idTransaction, token) {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    return axios.delete(`${apiBaseUrl}/transaction/${idTransaction}`, config);
+}
+
 export {
     postTransaction,
     getTrasactionsBalance,
+    deleteTransaction,
 
 }
