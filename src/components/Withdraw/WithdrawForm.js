@@ -74,6 +74,7 @@ export default function WithdrawForm() {
                 placeholder="Descrição"
                 name="description"
                 value={withdraw.description}
+                maxLength={20}
                 onChange={event => {
                     setWithdraw({
                         ...withdraw,

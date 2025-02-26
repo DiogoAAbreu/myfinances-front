@@ -74,6 +74,7 @@ export default function DepositForm() {
                 placeholder="Descrição"
                 name="description"
                 value={deposit.description}
+                maxLength={20}
                 onChange={event => {
                     setDeposit({
                         ...deposit,
