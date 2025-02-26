@@ -32,9 +32,20 @@ function deleteTransaction(idTransaction, token) {
     return axios.delete(`${apiBaseUrl}/transaction/${idTransaction}`, config);
 }
 
+function updateTransaction(idTransaction, transaction, token) {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    return axios.put(`${apiBaseUrl}/transaction/${idTransaction}`, transaction, config)
+}
+
 export {
     postTransaction,
     getTrasactionsBalance,
     deleteTransaction,
+    updateTransaction
 
 }
