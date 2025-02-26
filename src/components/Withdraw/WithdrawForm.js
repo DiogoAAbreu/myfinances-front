@@ -88,7 +88,7 @@ export default function WithdrawForm() {
                 height={'46px'}
                 margin={'5px 0px 0px 0px'}
                 fontSize={'20px'}>
-                Salvar Entrada
+                Salvar Saída
             </Button>
             <Toast />
         </FormWrapper>
