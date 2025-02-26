@@ -3,9 +3,10 @@ import styled from "styled-components"
 export default function Transaction({ date, description, value }) {
     return (
         <TransactionWrapper>
-            <Date>02/03</Date>
+            <Date>02/03M</Date>
             <Description>Metidaaaaaaaaaaaaaaa</Description>
             <Value>2000</Value>
+            <button>X</button>
         </TransactionWrapper>
     )
 }
@@ -19,6 +20,10 @@ const TransactionWrapper = styled.div`
     font-size: 16px;
     width: 100%;
     background-color: purple;
+    button{
+        color: #C6C6C6;
+        margin-left:5px;
+    }
 `
 
 const Date = styled.span`
