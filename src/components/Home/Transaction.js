@@ -1,11 +1,15 @@
 import styled from "styled-components"
+import dayjs from "dayjs";
 
-export default function Transaction({ date, description, value, id }) {
+export default function Transaction({ date, description, value, type, id }) {
+    const formattedValue = (value / 100).toFixed(2)
+
+    const formattedDate = dayjs(date).format("DD/MM");
     return (
-        <TransactionWrapper>
-            <Date>02/03</Date>
-            <Description>asdasdasdsssdasdgaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</Description>
-            <Value>2000,00</Value>
+        <TransactionWrapper >
+            <Date>{formattedDate}</Date>
+            <Description>{description}</Description>
+            <Value $type={type}>{formattedValue}</Value>
             <button>x</button>
         </TransactionWrapper>
     )
@@ -46,7 +50,7 @@ const Description = styled.span`
 `
 
 const Value = styled.span`
-    color: #C70000;
+    color: ${props => props.$type == 'deposit' ? '#03AC00' : '#C70000'};
     position: absolute;
     right: 5%;
     background-color:#fff4e6;

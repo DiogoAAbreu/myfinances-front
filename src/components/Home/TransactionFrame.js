@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import styled from "styled-components";
 import { AuthContext } from "../../contexts/auth.context";
-import { getTrasactionsBalance } from "../../services/transactions.services";
+import { getTransactions, getTrasactionsBalance } from "../../services/transactions.services";
 import { useNavigate } from "react-router-dom";
 import Transaction from "./Transaction";
 
@@ -30,12 +30,26 @@ export default function TrasactionFrame() {
             }
         })
 
-
-    }, [token, navigate])
+        getTransactions(token).then(res => {
+            setTransaction(res.data)
+        }
+        ).catch(error => {
+            if (error.status === 401) {
+                navigate('/');
+            }
+        })
+    }, [token, navigate]);
 
     return (
         <FrameWrapper>
-            <Transaction />
+            {transactions?.map(transaction => (
+                <Transaction key={transaction._id}
+                    id={transaction._id}
+                    description={transaction.description}
+                    value={transaction.value}
+                    date={transaction.date}
+                    type={transaction.type} />
+            ))}
             <Amount balance={balance} />
         </FrameWrapper>
     );
