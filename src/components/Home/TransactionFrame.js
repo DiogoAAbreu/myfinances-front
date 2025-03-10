@@ -11,6 +11,8 @@ export default function TrasactionFrame() {
         withdraw: ''
     });
 
+    const [transactions, setTransaction] = useState();
+
     const { token } = useContext(AuthContext);
 
     const navigate = useNavigate();
@@ -27,6 +29,8 @@ export default function TrasactionFrame() {
                 navigate('/');
             }
         })
+
+
     }, [token, navigate])
 
     return (

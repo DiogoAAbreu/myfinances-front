@@ -42,10 +42,21 @@ function updateTransaction(idTransaction, transaction, token) {
     return axios.put(`${apiBaseUrl}/transaction/${idTransaction}`, transaction, config)
 }
 
+function getTransactions(token) {
+    const config = {
+        headers: {
+            Authorization: `Bearer ${token}`
+        }
+    }
+
+    return axios.get(`${apiBaseUrl}/transaction`, config)
+}
+
 export {
     postTransaction,
     getTrasactionsBalance,
     deleteTransaction,
-    updateTransaction
+    updateTransaction,
+    getTransactions
 
 }
