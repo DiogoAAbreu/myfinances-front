@@ -50,7 +50,7 @@ const Description = styled.span`
 `
 
 const Value = styled.span`
-    color: ${props => props.$type == 'deposit' ? '#03AC00' : '#C70000'};
+    color: ${props => props.$type === 'deposit' ? '#03AC00' : '#C70000'};
     position: absolute;
     right: 5%;
     background-color:#fff4e6;
