@@ -31,7 +31,7 @@ export default function TrasactionFrame() {
         })
 
         getTransactions(token).then(res => {
-            setTransaction(res.data)
+            setTransaction(res.data.reverse())
         }
         ).catch(error => {
             if (error.status === 401) {
