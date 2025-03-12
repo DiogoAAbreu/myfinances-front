@@ -15,7 +15,7 @@ export default function Transaction({ date, description, value, type, id }) {
     )
 }
 
-const TransactionWrapper = styled.div`
+const TransactionWrapper = styled.li`
     height: 30px;
     display: flex;
     align-items: center;

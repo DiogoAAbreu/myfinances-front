@@ -11,7 +11,7 @@ export default function TrasactionFrame() {
         withdraw: ''
     });
 
-    const [transactions, setTransaction] = useState();
+    const [transactions, setTransaction] = useState([]);
 
     const { token } = useContext(AuthContext);
 
@@ -42,7 +42,7 @@ export default function TrasactionFrame() {
 
     return (
         <FrameWrapper>
-            {transactions?.map(transaction => (
+            {!transactions[0] ? (<EmptyTable />) : transactions?.map(transaction => (
                 <Transaction key={transaction._id}
                     id={transaction._id}
                     description={transaction.description}
@@ -63,6 +63,16 @@ function Amount({ balance }) {
             <p>SALDO</p>
             <span>R$ {amountFormated}</span>
         </AmountDiv>
+    )
+}
+
+function EmptyTable() {
+    return (
+        <EmptyTableDiv>
+            <p>
+                Não há registros de<br />entrada ou saída
+            </p>
+        </EmptyTableDiv>
     )
 }
 
@@ -94,5 +104,19 @@ const AmountDiv = styled.div`
         font-size: 17px;
         font-weight: 400;
         color: ${props => props.$balance < 0 ? '#C70000' : '#03AC00'};
+    }
+`
+
+const EmptyTableDiv = styled.div`
+    display: flex;
+    justify-content:center;
+    align-items:center;
+    text-align:center;
+    background-color:#fff4e6;
+    width: 326px;
+    height: 446px;
+    border-radius: 5px;
+    p{
+        color: #868686;
     }
 `
