@@ -38,7 +38,7 @@ export default function DepositForm() {
 
         const transaction = {
             type: 'deposit',
-            value: Number(deposit.value.replace('R$', '').replace(',', '.')),
+            value: Number(withdraw.value.replace('R$', '').replace(/\./g, '').replace(',', '.')),
             description: deposit.description
         }
 
