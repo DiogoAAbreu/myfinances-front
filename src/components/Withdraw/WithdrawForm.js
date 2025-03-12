@@ -38,7 +38,7 @@ export default function WithdrawForm() {
 
         const transaction = {
             type: 'withdraw',
-            value: Number(withdraw.value.replace('R$', '').replace(',', '.')),
+            value: Number(withdraw.value.replace('R$', '').replace(/\./g, '').replace(',', '.')),
             description: withdraw.description
         }
 
@@ -46,6 +46,7 @@ export default function WithdrawForm() {
             await postTransaction(transaction, token);
             navigate('/home');
         } catch (error) {
+            console.log(transaction)
             if (error.status === 401) {
                 navigate('/')
             }
