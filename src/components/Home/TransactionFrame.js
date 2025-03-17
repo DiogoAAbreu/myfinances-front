@@ -115,6 +115,7 @@ const EmptyTableDiv = styled.div`
     background-color:#fff4e6;
     width: 326px;
     height: 446px;
+    font-size: 20px;
     border-radius: 5px;
     p{
         color: #868686;
