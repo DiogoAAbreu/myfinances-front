@@ -41,17 +41,19 @@ export default function TrasactionFrame() {
     }, [token, navigate]);
 
     return (
-        <FrameWrapper>
-            {!transactions[0] ? (<EmptyTable />) : transactions?.map(transaction => (
-                <Transaction key={transaction._id}
-                    id={transaction._id}
-                    description={transaction.description}
-                    value={transaction.value}
-                    date={transaction.date}
-                    type={transaction.type} />
-            ))}
+        <>
+            <FrameWrapper>
+                {!transactions[0] ? (<EmptyTable />) : transactions?.map(transaction => (
+                    <Transaction key={transaction._id}
+                        id={transaction._id}
+                        description={transaction.description}
+                        value={transaction.value}
+                        date={transaction.date}
+                        type={transaction.type} />
+                ))}
+            </FrameWrapper>
             <Amount balance={balance} />
-        </FrameWrapper>
+        </>
     );
 }
 
@@ -78,23 +80,22 @@ function EmptyTable() {
 
 const FrameWrapper = styled.ul`
     width: 326px;
-    height: 446px;
-    border-radius: 5px;
+    height: 416px;
+    border-radius: 5px 5px 0px 0px;
     background-color:#fff4e6;
-    position: relative;
+    overflow-y: scroll;
+    overflow-x: hidden;
 `
 
 const AmountDiv = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
+    background-color:#fff4e6;
     padding: 15px;
     width: 326px;
     height: 30px;
-    border-radius: 5px;
-    position: absolute;
-    bottom: 0;
-    left: 0;
+    border-radius: 0px 0px 5px 5px;
     p{
         font-size: 17px;
         font-weight: 700;

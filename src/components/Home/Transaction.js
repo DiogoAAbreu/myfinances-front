@@ -26,6 +26,8 @@ const TransactionWrapper = styled.li`
     font-size: 16px;
     width: 100%;
     position: relative;
+    border: 1px #fff4e6 solid;
+    transition: 0.2s linear;
     button{
         color: #C6C6C6;
         margin-left:5px;
@@ -37,6 +39,11 @@ const TransactionWrapper = styled.li`
         right: 0%;
         background-color:#fff4e6;
         padding: 4px;
+    }
+    &:hover{
+        cursor: pointer;
+        border-top: 1px solid rgb(226, 226, 226);
+        border-bottom: 1px solid rgb(226, 226, 226);
     }
 `
 
