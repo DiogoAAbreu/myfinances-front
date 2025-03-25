@@ -4,6 +4,7 @@ import { AuthContext } from "../../contexts/auth.context";
 import { getTransactions, getTrasactionsBalance } from "../../services/transactions.services";
 import { useNavigate } from "react-router-dom";
 import Transaction from "./Transaction";
+import DeleteTransaction from "./DeleteTransaction";
 
 export default function TrasactionFrame() {
     const [balance, setBalance] = useState({
@@ -44,13 +45,15 @@ export default function TrasactionFrame() {
         <>
             <FrameWrapper>
                 {!transactions[0] ? (<EmptyTable />) : transactions?.map(transaction => (
-                    <Transaction key={transaction._id}
+                    <Transaction
+                        key={transaction._id}
                         id={transaction._id}
                         description={transaction.description}
                         value={transaction.value}
                         date={transaction.date}
                         type={transaction.type} />
                 ))}
+                <DeleteTransaction />
             </FrameWrapper>
             <Amount balance={balance} />
         </>
@@ -83,8 +86,9 @@ const FrameWrapper = styled.ul`
     height: 416px;
     border-radius: 5px 5px 0px 0px;
     background-color:#fff4e6;
-    overflow-y: scroll;
+    overflow-y: auto;
     overflow-x: hidden;
+    position: relative;
 `
 
 const AmountDiv = styled.div`
