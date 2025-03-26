@@ -14,6 +14,10 @@ export default function TrasactionFrame() {
 
     const [transactions, setTransaction] = useState([]);
 
+    const [deleteTransactionEnabled, setDeleteTransactionEnabled] = useState(false);
+
+    const [selectedTransaction, setSelectedTransaction] = useState();
+
     const { token } = useContext(AuthContext);
 
     const navigate = useNavigate();
@@ -43,7 +47,7 @@ export default function TrasactionFrame() {
 
     return (
         <>
-            <FrameWrapper>
+            <FrameWrapper $deleteTransactionEnabled={deleteTransactionEnabled}>
                 {!transactions[0] ? (<EmptyTable />) : transactions?.map(transaction => (
                     <Transaction
                         key={transaction._id}
@@ -51,9 +55,16 @@ export default function TrasactionFrame() {
                         description={transaction.description}
                         value={transaction.value}
                         date={transaction.date}
-                        type={transaction.type} />
+                        type={transaction.type}
+                        setDeleteTransactionEnabled={setDeleteTransactionEnabled}
+                        setSelectedTransaction={setSelectedTransaction} />
                 ))}
-                <DeleteTransaction />
+                {deleteTransactionEnabled && <DeleteTransaction
+                    setDeleteTransactionEnabled={setDeleteTransactionEnabled}
+                    description={selectedTransaction.description}
+                    value={selectedTransaction.value}
+                    type={selectedTransaction.type}
+                    id={selectedTransaction.id} />}
             </FrameWrapper>
             <Amount balance={balance} />
         </>
@@ -86,7 +97,7 @@ const FrameWrapper = styled.ul`
     height: 416px;
     border-radius: 5px 5px 0px 0px;
     background-color:#fff4e6;
-    overflow-y: auto;
+    overflow-y: ${props => props.$deleteTransactionEnabled === true ? 'hidden' : 'auto'};
     overflow-x: hidden;
     position: relative;
 `

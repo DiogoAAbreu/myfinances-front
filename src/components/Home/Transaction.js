@@ -1,7 +1,7 @@
 import styled from "styled-components"
 import dayjs from "dayjs";
 
-export default function Transaction({ date, description, value, type, id }) {
+export default function Transaction({ date, description, value, type, id, setDeleteTransactionEnabled, setSelectedTransaction }) {
     const formattedValue = (value / 100).toFixed(2)
 
     const formattedDate = dayjs(date).format("DD/MM");
@@ -10,7 +10,16 @@ export default function Transaction({ date, description, value, type, id }) {
             <Date>{formattedDate}</Date>
             <Description>{description}</Description>
             <Value $type={type}>{formattedValue}</Value>
-            <button>x</button>
+            <button onClick={() => {
+                setDeleteTransactionEnabled(true)
+                setSelectedTransaction({
+                    description,
+                    value,
+                    type,
+                    id,
+                })
+            }
+            }>x</button>
         </TransactionWrapper>
     )
 }
