@@ -12,7 +12,7 @@ export default function TrasactionFrame() {
         withdraw: ''
     });
 
-    const [transactions, setTransaction] = useState([]);
+    const [transactions, setTransactions] = useState([]);
 
     const [deleteTransactionEnabled, setDeleteTransactionEnabled] = useState(false);
 
@@ -36,14 +36,14 @@ export default function TrasactionFrame() {
         })
 
         getTransactions(token).then(res => {
-            setTransaction(res.data.reverse())
+            setTransactions(res.data.reverse())
         }
         ).catch(error => {
             if (error.status === 401) {
                 navigate('/');
             }
         })
-    }, [token, navigate]);
+    }, [token, navigate, transactions]);
 
     return (
         <>
@@ -60,6 +60,8 @@ export default function TrasactionFrame() {
                         setSelectedTransaction={setSelectedTransaction} />
                 ))}
                 {deleteTransactionEnabled && <DeleteTransaction
+                    transaction={transactions}
+                    setTransactions={setTransactions}
                     setDeleteTransactionEnabled={setDeleteTransactionEnabled}
                     description={selectedTransaction.description}
                     value={selectedTransaction.value}

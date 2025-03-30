@@ -1,16 +1,46 @@
 import styled from "styled-components"
+import { deleteTransaction } from "../../services/transactions.services";
+import { useContext } from "react";
+import { AuthContext } from "../../contexts/auth.context";
+import { useNavigate } from "react-router-dom";
+import { Toast } from "../common";
+import { toast } from "react-toastify";
 
 export default function DeleteTransaction({
+    transactions,
+    setTransactions,
     setDeleteTransactionEnabled,
     description,
     type,
     value,
     id
 }) {
+    const { token } = useContext(AuthContext);
+
+    const navigate = useNavigate()
+
+    function notifyError(error) {
+        toast.error(error);
+    };
+
     const valueFormated = String((value / 100).toFixed(2)).replace('.', ',');
 
-    function deleteTransaction(id) {
-
+    async function handleExclusion(idTransaction, token) {
+        try {
+            await deleteTransaction(idTransaction, token);
+            setDeleteTransactionEnabled(false);
+            setTransactions([
+                ...transactions,
+                transactions.filter(transaction => {
+                    return transaction.id !== idTransaction
+                })
+            ])
+        } catch (error) {
+            if (error.status === 401) {
+                navigate('/');
+            }
+            notifyError(error.response.data.message);
+        }
     }
 
     return (
@@ -34,9 +64,10 @@ export default function DeleteTransaction({
                 </div>
                 <ButtonsDiv>
                     <ButtonCancel onClick={() => setDeleteTransactionEnabled(false)}>Cancelar</ButtonCancel>
-                    <ButtonDelete>Excluir</ButtonDelete>
+                    <ButtonDelete onClick={() => handleExclusion(id, token)}>Excluir</ButtonDelete>
                 </ButtonsDiv>
             </DeleteDiv>
+            <Toast />
         </DeleteWrapper>
     )
 }
